@@ -1,16 +1,11 @@
 from pwn import *
-import sys
 
-if len(sys.argv) !=2:
-    print("invalid argument")
-    print(f">> {sys.argv[0]} <sha256sum>")
-    exit()
-hash = sys.argv[1]
+hash = input("enter the hash: ")
 print(hash)
-passfile = "common.txt" 
+passfile = input("enter the path to passlist: ") 
 attempts = 0
 
-with log.progress (f"attempting to crack: {hash}") as p:
+with log.progress (f"attempting to crack:") as p:
     with open(passfile,"r", encoding='latin-1') as passlist:
         for password in passlist:
             password = password.strip("\n").encode('latin-1')
